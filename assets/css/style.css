@@ -65,7 +65,13 @@ textarea{
   color: white;
 }
 
-.saveBtn i:hover {
+.saveBtn img:hover {
+  cursor: pointer;
   font-size: 20px;
   transition: all .3s ease-in-out;
+}
+
+.saveBtn img{
+  height: 40px;
+  margin: 15px auto;
 }
