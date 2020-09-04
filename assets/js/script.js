@@ -1,4 +1,62 @@
-//global variables to be called
-var currentDay = $("#currentDay");
+//initializes page on load
+init();
+function init() {
+    var currentDay = $("#currentDay");
+    var hrTime = parseInt(moment().format('HH'));
+    currentDay.text(moment().format('dddd MMMM Do YYYY'));
+    for (var i = 9; i < 18; i++) {
+        var time = parseInt(document.getElementById(i).getAttribute("data-time"));
+        var textAreaId = document.getElementById(i);
+        if (time < hrTime) {
+            textAreaId.setAttribute("class", "col-8 text past");
+        } else if (time > hrTime) {
+            textAreaId.setAttribute("class", "col-8 text future");
+        } else {
+            textAreaId.setAttribute("class", "col-8 text present");
+        }
+        loadText();
+    }
+};
 
-currentDay.text(moment().format('LL'));
+$(".saveBtn").on("click", function (event) {
+    event.preventDefault();
+    var element = event.target.getAttribute("class");
+    if (element === "save") {
+        var timeStr = this.parentNode.childNodes[3].getAttribute("data-string");
+        var timeText = this.parentNode.childNodes[3].value;
+
+        if (timeStr === "nine") {
+            localStorage.setItem("nine", timeText);
+        } else if (timeStr === "ten") {
+            localStorage.setItem("ten", timeText);
+        } else if (timeStr === "eleven") {
+            localStorage.setItem("eleven", timeText);
+        } else if (timeStr === "twelve") {
+            localStorage.setItem("twelve", timeText);
+        } else if (timeStr === "one") {
+            localStorage.setItem("one", timeText);
+        } else if (timeStr === "two") {
+            localStorage.setItem("two", timeText);
+        } else if (timeStr === "three") {
+            localStorage.setItem("three", timeText);
+        } else if (timeStr === "four") {
+            localStorage.setItem("four", timeText);
+        } else {
+            localStorage.setItem("five", timeText);
+        }
+
+        location.reload(true);
+    }
+})
+
+function loadText() {
+    document.getElementById("9").value = localStorage.getItem("nine");
+    document.getElementById("10").value = localStorage.getItem("ten");
+    document.getElementById("11").value = localStorage.getItem("eleven");
+    document.getElementById("12").value = localStorage.getItem("twelve");
+    document.getElementById("13").value = localStorage.getItem("one");
+    document.getElementById("14").value = localStorage.getItem("two");
+    document.getElementById("15").value = localStorage.getItem("three");
+    document.getElementById("16").value = localStorage.getItem("four");
+    document.getElementById("17").value = localStorage.getItem("five");
+}
