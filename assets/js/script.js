@@ -1,9 +1,13 @@
 //initializes page on load
 init();
+
+
 function init() {
+    //uses moment.js to get current hour/day/month
     var currentDay = $("#currentDay");
     var hrTime = parseInt(moment().format('HH'));
     currentDay.text(moment().format('dddd MMMM Do YYYY'));
+    //runs over all the text areas and sets a background color according to the time
     for (var i = 9; i < 18; i++) {
         var time = parseInt(document.getElementById(i).getAttribute("data-time"));
         var textAreaId = document.getElementById(i);
@@ -14,6 +18,7 @@ function init() {
         } else {
             textAreaId.setAttribute("class", "col-8 text present");
         }
+        //loads saved text from local storage
         loadText();
     }
 };
