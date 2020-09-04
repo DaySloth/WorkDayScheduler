@@ -23,13 +23,15 @@ function init() {
     }
 };
 
+//adds click listener to the save buttons
 $(".saveBtn").on("click", function (event) {
     event.preventDefault();
     var element = event.target.getAttribute("class");
     if (element === "save") {
+        //grabs data-string and timeText value to be used in saving the text to local storage
         var timeStr = this.parentNode.childNodes[3].getAttribute("data-string");
         var timeText = this.parentNode.childNodes[3].value;
-
+        //checks what time it is on and saves to local storage accordingly
         if (timeStr === "nine") {
             localStorage.setItem("nine", timeText);
         } else if (timeStr === "ten") {
@@ -49,11 +51,12 @@ $(".saveBtn").on("click", function (event) {
         } else {
             localStorage.setItem("five", timeText);
         }
-
+        //reloads the page after a save
+        //this is added in case the hour changes, so this will update the text area colors accordingly
         location.reload(true);
     }
 })
-
+//loadText function to grab all of the local storage saved items and inputs to page
 function loadText() {
     document.getElementById("9").value = localStorage.getItem("nine");
     document.getElementById("10").value = localStorage.getItem("ten");
