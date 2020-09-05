@@ -1,5 +1,15 @@
-//initializes page on load
-init();
+//sets object to call later on
+var hourText = {
+    "9": "nine",
+    "10": "ten",
+    "11": "eleven",
+    "12": "twelve",
+    "13": "one",
+    "14": "two",
+    "15": "three",
+    "16": "four",
+    "17": "five",
+};
 
 
 function init() {
@@ -23,48 +33,33 @@ function init() {
     }
 };
 
-//adds click listener to the save buttons
-$(".saveBtn").on("click", function (event) {
-    event.preventDefault();
-    var element = event.target.getAttribute("class");
-    if (element === "save") {
-        //grabs data-string and timeText value to be used in saving the text to local storage
-        var timeStr = this.parentNode.childNodes[3].getAttribute("data-string");
-        var timeText = this.parentNode.childNodes[3].value;
-        //checks what time it is on and saves to local storage accordingly
-        if (timeStr === "nine") {
-            localStorage.setItem("nine", timeText);
-        } else if (timeStr === "ten") {
-            localStorage.setItem("ten", timeText);
-        } else if (timeStr === "eleven") {
-            localStorage.setItem("eleven", timeText);
-        } else if (timeStr === "twelve") {
-            localStorage.setItem("twelve", timeText);
-        } else if (timeStr === "one") {
-            localStorage.setItem("one", timeText);
-        } else if (timeStr === "two") {
-            localStorage.setItem("two", timeText);
-        } else if (timeStr === "three") {
-            localStorage.setItem("three", timeText);
-        } else if (timeStr === "four") {
-            localStorage.setItem("four", timeText);
-        } else {
-            localStorage.setItem("five", timeText);
-        }
-        //reloads the page after a save
-        //this is added in case the hour changes, so this will update the text area colors accordingly
-        location.reload(true);
-    }
-})
 //loadText function to grab all of the local storage saved items and inputs to page
 function loadText() {
-    document.getElementById("9").value = localStorage.getItem("nine");
-    document.getElementById("10").value = localStorage.getItem("ten");
-    document.getElementById("11").value = localStorage.getItem("eleven");
-    document.getElementById("12").value = localStorage.getItem("twelve");
-    document.getElementById("13").value = localStorage.getItem("one");
-    document.getElementById("14").value = localStorage.getItem("two");
-    document.getElementById("15").value = localStorage.getItem("three");
-    document.getElementById("16").value = localStorage.getItem("four");
-    document.getElementById("17").value = localStorage.getItem("five");
-}
+    for (var i = 9; i < 18; i++) {
+        document.getElementById(i).value = localStorage.getItem(hourText[i]);
+    };
+};
+
+//saves text to local storage
+function saveText(time, text){
+    localStorage.setItem(hourText[time], text);
+};
+
+//adds click listener to the save buttons
+$(".save").on("click", function () {
+    //grabs timeid and text to save to local storage
+    var textarea = this.parentNode.parentNode.querySelector("textarea");
+    var timeID = textarea.getAttribute("id");
+    var timeText = textarea.value;
+
+    //calls save Text function to save text to local storage
+    saveText(timeID, timeText);
+
+    //reloads the page after a save
+    //this is added in case the hour changes, so this will update the text area colors accordingly
+    location.reload(true);
+});
+
+
+//initializes page on load
+init();
