@@ -57,7 +57,7 @@ $(".save").on("click", function () {
 
     //reloads the page after a save
     //this is added in case the hour changes, so this will update the text area colors accordingly
-    location.reload(true);
+    init();
 });
 
 
