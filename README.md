@@ -2,19 +2,19 @@
 
 [Go To Site](https://daysloth.github.io/WorkDayScheduler/)
 
-![Questions Game](./assets/img/Capture.PNG)
+![Work Day Scheduler](./assets/img/Capture.PNG)
 
 ## Description 
 
-This project was built as a simple 5 questions game. The app utilizes local storage and JavaScript to dynamically update the HTML elements on the page. The highscores will be locally saved and updated after every quiz attempt.
+This project was built as a simple 9-5 Workday planner. The planner will grab the system time using [Moment.js](https://momentjs.com) and update the colors for the text areas accordingly. Grey is past, Red is the current time and green is the future time. Moment.js is used for grabbing system time and to grab the current date and display that on the screen.
 
 ## Testing
 
-There are explainations on the landing page. You have 60 seconds to complete the quiz. There is no winning score, try to get as many correct as possible, then input your name and save your high score. You can view your highscores by selecting the highscores links. If you answer a question wrong you will be deducted 10 seconds off the clock so be careful.
+Once you load the page it will pull local storage keys from a previous session. You can click a text area, type whatever you would like and then hit save. This will save it to local storage and refresh the page to display the correct time if it has changed.
 
 ## Unique Feature
 
-I feel a unique feature added to this site is the timer. After 30 seconds it will change it color to red to indicate time is running short. Once it reaches 15 seconds it will start to blink in an attempt to grab the users attention to the amount of time remaining. Please check this feature out.
+If the user has been on the page and the time has changed since the initial load, I added a page refresh after they hit a save button to reload the page and display the correct color for the times.
 
 ## Credits
 
